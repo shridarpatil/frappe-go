@@ -20,8 +20,8 @@ type HelloArgs struct {
 
 
 type Place struct {
-    Name	 string
-    Owner     string
+	Name 	string
+	Owner	string
 }
 
 
@@ -37,8 +37,8 @@ func (h *HelloService) Say(r *http.Request, args *HelloArgs, reply *HelloReply) 
 	// frappe.InitDB("mysql", "root:r00t@(172.17.0.1:3306)/crux")
 	fmt.Println(frappe.Frappe.Ping())
 	var jason = Place{}
-    frappe.Frappe.Db.Get(&jason, `SELECT name, owner FROM "tabUser" limit 1 `)
-    fmt.Printf("%#v\n", jason)
+	frappe.Frappe.Db.Get(&jason, `SELECT name, owner FROM "tabUser" limit 1 `)
+	fmt.Printf("%#v\n", jason)
 
 
 	return nil
