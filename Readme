@@ -1,0 +1,1 @@
+docker run --name frappe -it -p 3000:8888 -v /home/zroot/workplace/go/src/github.com/user/frappe/frappe:/frappe frappe  /bin/bash
