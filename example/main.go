@@ -1,7 +1,7 @@
 package main
 
 import "github.com/user/frappe"
-
+import "github.com/user/frappe/example/api"
 import "net/http"
 import "fmt"
 import "log"
@@ -25,6 +25,12 @@ type Place struct {
 }
 
 
+type Opt struct {
+	api      *api.Api
+}
+
+
+
 func (h *HelloService) Say(r *http.Request, args *HelloArgs, reply *HelloReply) error {
 	err := frappe.Authorize(r)
 
@@ -34,7 +40,6 @@ func (h *HelloService) Say(r *http.Request, args *HelloArgs, reply *HelloReply) 
 	reply.Message = "Hello, " + args.Who + "!"
 	log.Printf("args: %v\nreply: %v, \n %v", r, r.Header.Get("Authorization"), frappe.Frappe)
 
-	// frappe.InitDB("mysql", "root:r00t@(172.17.0.1:3306)/crux")
 	fmt.Println(frappe.Frappe.Ping())
 	var jason = Place{}
 	frappe.Frappe.Db.Get(&jason, `SELECT name, owner FROM "tabUser" limit 1 `)
@@ -49,7 +54,11 @@ func (h *HelloService) Say(r *http.Request, args *HelloArgs, reply *HelloReply) 
 func main() {
 
 	// Register methods for rpc
+	var opt = &Opt{}
+	opt.api = api.New()
+
 	frappe.Frappe.Server.RegisterService(new(HelloService), "")
+	frappe.Frappe.Server.RegisterService(opt.api, "")
 
 	http.Handle("/rpc", frappe.Frappe.Server)
 	http.ListenAndServe("localhost:10000", nil)

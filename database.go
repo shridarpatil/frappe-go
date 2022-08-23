@@ -2,8 +2,7 @@ package frappe
 
 
 import (
-	"log"
-	"fmt"
+
 
 	"github.com/jmoiron/sqlx"
 
@@ -18,14 +17,13 @@ import (
 
 func InitDB(driver, dsn string) *sqlx.DB {
 	// Open the db connection and make a ping.
-	fmt.Println("\033[33m Initializing database: \033[0m", driver)
+	Frappe.Log.InfoF("Initializing database: %s", driver)
 	db, err := sqlx.Connect(driver, dsn)
 
 	if err != nil {
-		log.Fatalf("error initializing DB. driver: %s, dsn: %s, message: %v", driver, dsn, err)
-		panic("Failed to connec to database")
+		Frappe.Log.CriticalF("error initializing DB. driver: %s, dsn: %s, message: %v", driver, dsn, err)
 	}
-	fmt.Println("\033[;32m Connected to database: \033[0m", driver,)
+	Frappe.Log.NoticeF("Connected to database: %s", driver)
 
 	return db
 }
