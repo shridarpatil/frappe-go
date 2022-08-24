@@ -13,10 +13,10 @@ Write apis for frappe framework in go
 
 Frappe-go uses a number of open source projects to work properly:
 
-- [Gorilla RPC](github.com/gorilla/rpc/v2) - Go RPC
-- [Ace Editor](github.com/jmoiron/sqlx) - General purpose extensions to golang's database/sql
-- [koanf](github.com/knadh/koanf) - Simple, lightweight, extensible, configuration management library for Go..
-- [Logger](github.com/apsdehal/go-logger) - Simple logger for Go programs. Allows custom formats for messages.
+- [Gorilla RPC](https://github.com/gorilla/rpc/v2) - Go RPC
+- [Sqlx](https://github.com/jmoiron/sqlx) - General purpose extensions to golang's database/sql
+- [koanf](https://github.com/knadh/koanf) - Simple, lightweight, extensible, configuration management library for Go..
+- [Logger](https://github.com/apsdehal/go-logger) - Simple logger for Go programs. Allows custom formats for messages.
 
 And of course Frappe-go itself is open source with a [public repository][dill]
  on GitHub.
