@@ -6,9 +6,6 @@ WORKDIR /frappe
 
 ARG CI_BUILD_TOKEN
 ENV CI_BUILD_TOKEN ${CI_BUILD_TOKEN}
-RUN git config --global url."https://gitlab-ci-token:$CI_BUILD_TOKEN@gitlab.zerodha.tech".insteadOf "https://gitlab.zerodha.tech"
-
-ENV CGO_ENABLED=0 GOOS=linux GOSUMDB="sum.golang.org" GOPROXY="https://goproxy.zerodha.tech" GONOSUMDB="*.zerodha.tech/*"
 
 # RUN make build
 
