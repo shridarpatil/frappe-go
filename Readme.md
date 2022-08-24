@@ -13,9 +13,9 @@ Write apis for frappe framework in go
 
 Frappe-go uses a number of open source projects to work properly:
 
-- [Gorilla RPC](https://github.com/gorilla/rpc) - Go RPC
-- [Sqlx](https://github.com/jmoiron/sqlx) - General purpose extensions to golang's database/sql
-- [koanf](https://github.com/knadh/koanf) - Simple, lightweight, extensible, configuration management library for Go..
+- [Gorilla RPC](https://github.com/gorilla/rpc) - A golang foundation for RPC over HTTP services.
+- [Sqlx](https://github.com/jmoiron/sqlx) - General purpose extensions to golang's database/sql.
+- [koanf](https://github.com/knadh/koanf) - Simple, lightweight, extensible, configuration management library for Go.
 - [Logger](https://github.com/apsdehal/go-logger) - Simple logger for Go programs. Allows custom formats for messages.
 
 And of course Frappe-go itself is open source with a [public repository][dill]
@@ -84,7 +84,11 @@ func main() {
 
 }
 ```
+Save above code in main.go and run 
 
+```sh
+go run main.go
+```
 
 ```sh
 localhost:10000/rpc
