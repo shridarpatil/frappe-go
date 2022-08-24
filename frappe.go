@@ -85,6 +85,59 @@ func (s *frappe) Ping() string{
 }
 
 
+func (s *frappe) HasRole(role string, user ...string) bool{
+	// Retrun true or false if user has the role
+	// Default user is the session user
+
+	query := `SELECT name
+		FROM "tabHas Role"
+		WHERE parent = $1
+			and parenttype = 'User'
+			and role = $2`
+	var id string
+	_user := Frappe.Session.User
+
+	Frappe.Log.DebugF("%v -- ", user)
+
+	if len(user) != 0{
+		_user = user[0]
+	}
+
+	err := Frappe.Db.Get(&id, query, _user, role)
+	if err != nil{
+		return false
+	}
+	return true
+}
+
+
+func(s *frappe) GetRoles(user ...string) []string{
+	// Retrun list of roles for specified user
+	// Default user is the session user
+
+	query := `SELECT role
+		FROM "tabHas Role"
+		WHERE parent = $1
+			and parenttype = 'User'`
+	_user := Frappe.Session.User
+
+	Frappe.Log.DebugF("%v -- ", user)
+
+	if len(user) != 0{
+		_user = user[0]
+	}
+
+	var role []string
+	err := Frappe.Db.Select(&role, query, _user)
+
+	Frappe.Log.DebugF("%v -- ", role)
+	if err != nil{
+		return nil
+	}
+
+	return role
+}
+
 
 func New(driver, dsn string) *frappe {
 	var frappe = &frappe{}

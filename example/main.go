@@ -41,7 +41,7 @@ func (h *HelloService) Say(r *http.Request, args *HelloArgs, reply *HelloReply) 
 	reply.Message = "Hello, " + args.Who + "!"
 	log.Printf("args: %v\nreply: %v, \n %v", r, r.Header.Get("Authorization"), frappe.Frappe)
 
-	fmt.Println(frappe.Frappe.Ping())
+	fmt.Println(frappe.Frappe.GetRoles("Administrator"))
 	var jason = Place{}
 	frappe.Frappe.Db.Get(&jason, `SELECT name, owner FROM "tabUser" limit 1 `)
 	fmt.Printf("%#v\n", jason)
