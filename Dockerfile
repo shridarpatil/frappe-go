@@ -11,5 +11,4 @@ ENV CI_BUILD_TOKEN ${CI_BUILD_TOKEN}
 
 VOLUME ["/etc/frappe"]
 EXPOSE 8888
-# CMD ["./rand.bin", "--config", "/etc/frappe/config.toml"]
 CMD ["/bin/bash"]
