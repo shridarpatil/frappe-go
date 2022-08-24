@@ -114,6 +114,16 @@ curl --location --request POST 'http://localhost:10000/rpc' \
     "id": "1"
 }
 ```
+
+### Stats
+
+Python based api took around 100ms on an average 
+![image](https://user-images.githubusercontent.com/11792643/186417332-e9db9270-032b-4adb-bdc3-95add5fe1c84.png)
+
+
+Golang based api took around less then 10ms on an average
+![image](https://user-images.githubusercontent.com/11792643/186417563-21cd8c20-f379-4cc6-b608-794ee7ec746c.png)
+
 ## License
 
 MIT
