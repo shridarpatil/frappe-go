@@ -22,6 +22,7 @@ func InitDB(driver, dsn string) *sqlx.DB {
 
 	if err != nil {
 		Frappe.Log.CriticalF("error initializing DB. driver: %s, dsn: %s, message: %v", driver, dsn, err)
+		panic("Failed to initialize DB")
 	}
 	Frappe.Log.NoticeF("Connected to database: %s", driver)
 

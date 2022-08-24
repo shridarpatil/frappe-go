@@ -52,6 +52,7 @@ func init() {
 
 	if err := ko.Load(file.Provider("config.toml"), toml.Parser()); err != nil {
 		log.ErrorF("error reading config: %v", err)
+		panic("error reading config:")
 	}
 
 	if err := ko.Unmarshal("app", &conf); err != nil {

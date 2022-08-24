@@ -1,0 +1,5 @@
+[app]
+[app.site]
+db_dsn = "host=172.17.0.1 port=5432 user=crm password=Gorv71YDDqYaW0kl dbname=crm sslmode=disable"
+db_driver = "postgres"
+encryption_key = "sEgBb3h1KKIlGayaGUem65aowNkGQp_3WgWqYnONMa4="
