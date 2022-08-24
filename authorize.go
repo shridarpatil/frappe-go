@@ -52,8 +52,6 @@ func Decrypt(token string) string {
 	k, _ := fernet.DecodeKey(hex.EncodeToString(key))
 
 	tok := []byte(token)
-			// require.NoError(t, err)
-
 
 	msg := fernet.VerifyAndDecrypt(tok, 0, []*fernet.Key{k})
 	return string(msg)

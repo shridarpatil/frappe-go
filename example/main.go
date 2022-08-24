@@ -10,9 +10,11 @@ import "log"
 
 type HelloService struct{}
 
+
 type HelloReply struct {
 	Message string
 }
+
 
 type HelloArgs struct {
 	Who string
@@ -28,7 +30,6 @@ type Place struct {
 type Opt struct {
 	api      *api.Api
 }
-
 
 
 func (h *HelloService) Say(r *http.Request, args *HelloArgs, reply *HelloReply) error {
