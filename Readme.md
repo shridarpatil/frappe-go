@@ -50,7 +50,7 @@ type HelloArgs struct {
 }
 
 
-type Place struct {
+type User struct {
 	Name 	string
 	Owner	string
 }
@@ -66,9 +66,9 @@ func (h *HelloService) Say(r *http.Request, args *HelloArgs, reply *HelloReply) 
 	log.Printf("args: %v\nreply: %v, \n %v", r, r.Header.Get("Authorization"), frappe.Frappe)
 
 	fmt.Println(frappe.Frappe.Ping())
-	var jason = Place{}
-	frappe.Frappe.Db.Get(&jason, `SELECT name, owner FROM "tabUser" limit 1 `)
-	fmt.Printf("%#v\n", jason)
+	var user = User{}
+	frappe.Frappe.Db.Get(&user, `SELECT name, owner FROM "tabUser" limit 1 `)
+	fmt.Printf("%#v\n", user)
 
 
 	return nil
