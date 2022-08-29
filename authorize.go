@@ -12,7 +12,7 @@ import (
 )
 
 
-func Authorize(r *http.Request) error {
+func (f *Frappe) Authorize(r *http.Request) error {
 	token := r.Header.Get("Authorization")
 
 	if token == "" {
@@ -26,7 +26,7 @@ func Authorize(r *http.Request) error {
 			api := strings.Split(authorization[1], ":")
 			var user = session{}
 
-			Frappe.Db.Get(
+			f.Db.Get(
 				&user,
 				`SELECT u.name as user, u.email, a.password
 					FROM "tabUser" u
@@ -34,9 +34,9 @@ func Authorize(r *http.Request) error {
 						AND a.doctype = 'User' AND a.fieldname = 'api_secret'
 					WHERE u.api_key = $1  limit 1`, api[0])
 
-			Frappe.Session = user
+			f.Session = user
 
-			if api[1] != Decrypt(user.Password){
+			if api[1] != f.Decrypt(user.Password){
 				err := fmt.Errorf("Authorization failed!",)
 				return err
 			}
@@ -46,8 +46,8 @@ func Authorize(r *http.Request) error {
 }
 
 
-func Decrypt(token string) string {
-	key, _ := base64.URLEncoding.DecodeString(Frappe.Config.EncryptionKey)
+func (f *Frappe) Decrypt(token string) string {
+	key, _ := base64.URLEncoding.DecodeString(f.Config.EncryptionKey)
 
 	k, _ := fernet.DecodeKey(hex.EncodeToString(key))
 

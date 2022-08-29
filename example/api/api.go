@@ -6,7 +6,9 @@ import (
 )
 
 
-type Api struct{}
+type Api struct{
+	*frappe.Frappe
+}
 
 
 // Api args
@@ -23,13 +25,13 @@ type Response struct {
 
 
 func (h *Api) Who(r *http.Request, args *Args, reply *Response) error {
-	err := frappe.Authorize(r)
+	err := h.Authorize(r)
 
 	if err != nil{
 		return err
 	}
 
-	frappe.Frappe.Log.Debug(frappe.Frappe.Session.User)
+	h.Log.Debug(h.Session.User)
 
 	reply.Message = "Hello, " + args.Who + "!"
 	log.Printf("request: %v\nargs: %v\nreply: %v", r, args, reply)
@@ -45,7 +47,7 @@ func (h *Api) Ping(r *http.Request, args *Args, reply *Response) error {
 
 
 // New API object.
-func New() *Api {
+func New(f  *frappe.Frappe) *Api {
 
-	return new(Api)
+	return &Api{f}
 }
