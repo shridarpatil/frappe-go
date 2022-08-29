@@ -13,15 +13,15 @@ import (
 
 type Frappe struct {
 	server 	*rpc.Server
-	Db 		*sqlx.DB
-	Log 	*logger.Logger
-	Session  session
-	Config   *SiteConfig
+	Db		*sqlx.DB
+	Log		*logger.Logger
+	Session	session
+	Config	*SiteConfig
 }
 
 
 type config struct {
-	Site     SiteConfig
+	Site	SiteConfig
 }
 
 
@@ -60,8 +60,6 @@ func (f *Frappe) HasRole(role string, user ...string) bool{
 	var id string
 	_user := f.Session.User
 
-	f.Log.DebugF("%v -- ", user)
-
 	if len(user) != 0{
 		_user = user[0]
 	}
@@ -97,7 +95,6 @@ func(f *Frappe) GetRoles(user ...string) []string{
 
 	return role
 }
-
 
 
 
@@ -142,7 +139,7 @@ func New(config *SiteConfig) *Frappe {
 	frappe.server = rpc.NewServer()
 	frappe.server.RegisterCodec(json.NewCodec(), "application/json")
 	frappe.Config.EncryptionKey = config.EncryptionKey
-	frappe.Db = frappe.initDB()
+	frappe.initDB()
 
 	return frappe
 }

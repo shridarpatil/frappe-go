@@ -47,7 +47,6 @@ func (h *HelloService) Say(r *http.Request, args *HelloArgs, reply *HelloReply) 
 	var jason = Place{}
 	h.Db.Get(&jason, `SELECT name, owner FROM "tabUser" limit 1 `)
 
-
 	return nil
 }
 

@@ -11,11 +11,10 @@ import (
 	// mysql driver
 	_ "github.com/go-sql-driver/mysql"
 
-
 )
 
 
-func (f *Frappe) initDB() *sqlx.DB {
+func (f *Frappe) initDB() {
 	// Open the db connection and make a ping.
 	f.Log.InfoF("Initializing database: %s", f.Config.Driver)
 	db, err := sqlx.Connect(f.Config.Driver, f.Config.DSN)
@@ -25,5 +24,5 @@ func (f *Frappe) initDB() *sqlx.DB {
 	}
 	f.Log.NoticeF("Connected to database: %s", f.Config.Driver)
 
-	return db
+	f.Db = db
 }
