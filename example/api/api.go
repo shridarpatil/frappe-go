@@ -1,5 +1,5 @@
 package api
-import "github.com/user/frappe"
+import "github.com/shridarpatil/frappe"
 import (
 	"log"
 	"net/http"
