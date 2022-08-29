@@ -30,7 +30,7 @@ Install the dependencies and devDependencies and start the server.
 ```go
 package main
 
-import "github.com/shridarpatil/frappe-go"
+import "github.com/shridarpatil/frappe"
 import "net/http"
 import "fmt"
 import "log"
