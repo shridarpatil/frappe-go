@@ -52,14 +52,6 @@ func (h *HelloService) Say(r *http.Request, args *HelloArgs, reply *HelloReply) 
 }
 
 
-func (h *HelloService) Validate(r *http.Request, args *HelloArgs, reply *HelloReply) error {
-	// Frappe.Authorize(r)
-	return nil
-}
-
-
-
-
 func main() {
 
 	var config = &frappe.SiteConfig{
